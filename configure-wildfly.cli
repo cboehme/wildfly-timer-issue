@@ -1,0 +1,13 @@
+connect 127.0.0.1
+
+batch
+
+# Set number of maximum number of requests to 2:
+/subsystem=request-controller/:write-attribute(name=max-requests,value=2)
+
+# Enable debug logging for EJB timer service:
+/subsystem=logging/console-handler=CONSOLE/:write-attribute(name=level,value=ALL)
+/subsystem=logging/logger=org.jboss.as.ejb3.timer:add
+
+run-batch
+:reload
